@@ -1,6 +1,8 @@
 import React from "react";
 import { Flex, Image, Text, Link as ChakraLink, Box } from "@chakra-ui/react";
 import { PX } from "@/styles/constants";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const SECTION1 = [
   {
@@ -27,24 +29,41 @@ export const Footer = () => {
       <Flex
         flexDir={["column", null, "row"]}
         gap={["10px", null, "20px"]}
-        color="white"
         bg="#2c4ba2"
         px={PX}
         py="10px"
+        color="white"
         mx="auto"
       >
         <Box>
-          <Text fontSize="26px" fontWeight={700} color="white">
+          <Text fontSize="26px" fontWeight={700} mb="20px">
             台灣經貿網
           </Text>
-          <Box display={["none", null, "static"]}>
-            <Flex gap={1}>
+          <Flex flexDir="column" display={["none", null, "flex"]} gap={1}>
+            <Flex gap={2} alignItems="center">
               <Text>主辦單位</Text>
               <Text>|</Text>
-              <Image src="/img/footer-logo.jpg" alt="logo" />
+              <Image
+                objectFit="contain"
+                w="30px"
+                src="/img/footer-logo.png"
+                alt="logo"
+              />
               <Text>經濟部國際貿易署</Text>
             </Flex>
-          </Box>
+            <Flex gap={2} alignItems="center">
+              <Text>執行單位</Text>
+              <Text>|</Text>
+              <Image
+                objectFit="contain"
+                w="20px"
+                src="/img/TAITRA_LOGO.png"
+                alt="logo"
+              />
+              <Text>中華民國對外貿易發展協會</Text>
+            </Flex>
+            <SocialMedias mt="20px" />
+          </Flex>
         </Box>
       </Flex>
       <Box bg="white" px={PX} py="10px" mx="auto">
@@ -75,21 +94,23 @@ const SOCIAL = [
   },
 ];
 
-const SocialMedias = () => {
+const SocialMedias = ({ ...styles }) => {
+  const router = useRouter();
+
   return (
-    <Flex gap="10px" alignItems="center">
+    <Flex gap="10px" alignItems="center" {...styles}>
       {SOCIAL.map((social, index) => (
         <ChakraLink
           as={Link}
           _hover={{
             textDecor: "none",
           }}
-          color={router.asPath === data.url ? "#4e80e0" : "black"}
+          color={router.asPath === social.href ? "#4e80e0" : "black"}
           fontSize={["14px", null, null, "16px"]}
-          href={data.url}
+          href={social.href}
           key={index}
         >
-          <Image src={social.href} alt={social.alt} />
+          <Image w="24px" src={social.img} alt={social.alt} />
         </ChakraLink>
       ))}
     </Flex>
