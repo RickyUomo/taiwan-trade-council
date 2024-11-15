@@ -36,7 +36,12 @@ export const Footer = () => {
         mx="auto"
       >
         <Box>
-          <Text fontSize="26px" fontWeight={700} mb="20px">
+          <Text
+            fontSize="26px"
+            fontWeight={700}
+            mb="20px"
+            textAlign={["center", null, "start"]}
+          >
             台灣經貿網
           </Text>
           <Flex flexDir="column" display={["none", null, "flex"]} gap={1}>
@@ -65,6 +70,7 @@ export const Footer = () => {
             <SocialMedias mt="20px" />
           </Flex>
         </Box>
+        <Box>{/* 關於計劃 */}</Box>
       </Flex>
       <Box bg="white" px={PX} py="10px" mx="auto">
         <Text color="black" fontSize="12px" textAlign="center">
